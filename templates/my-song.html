@@ -1,13 +1,16 @@
+<!DOCTYPE html>
 {% extends "base.html" %}
-{% block title %}
+{% block head %}
 {{super()}}
 <style>
-h1{
-  color: blue
-}
+  h1 {
+    color:blue;
+  }
 </style>
+{% endblock %}
+{% block title %}
   My Song
 {% endblock %}
-{% block page_content %}
-    <h1>My song</h1>
-{% endblock %}
+{% block page_content%}
+    <h1>This is my songs</h1>
+{% endblock%}
