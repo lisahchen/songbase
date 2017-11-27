@@ -4,11 +4,11 @@
 {% block title %}
   All Songs
 {% endblock %}
-{% block page_content%}
+{% block page_content %}
     <h1>This page shows all songs</h1>
     {% for song in songs %}
       <h3>{{song.name}}</h3>
       <p>{{song.year}}</p>
       <p>{{song.artist.name}}</p>
     {% endfor %}
-{% endblock%}
+{% endblock %}

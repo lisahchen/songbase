@@ -16,6 +16,16 @@ class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
     about = db.Column(db.Text)
+    songs = db.relationship('Song', backref='artist')
+
+
+class Song(db.Model):
+    __tablename__ = 'songs'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(256))
+    year = db.Column(db.Integer)
+    lyrics = db.Column(db.Text)
+    artist_id = db.Column(db.Integer, dbForeignKey('artists.id'))
 
 
 @app.route('/')
@@ -53,15 +63,6 @@ def add_artists():
         return redirect(url_for('show_all_artists'))
 
 
-class Song(db.Model):
-    __tablename__ = 'songs'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(256))
-    year = db.Column(db.Integer)
-    lyrics = db.Column(db.Text)
-    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
-
-
 @app.route('/form-demo', methods=['GET', 'POST'])
 def form_demo():
     if request.method == 'GET':
@@ -70,6 +71,7 @@ def form_demo():
             return render_template('form-demo.html', first_name = first_name)
         else:
             return render_template('form-demo.html', first_name = session.get('first_name'))
+
     if request.method == 'POST':
         session['first_name'] = request.form['first_name']
         return redirect(url_for('form_demo'))

@@ -11,7 +11,7 @@ def deploy():
     db.create_all()
     coldplay = Artist(name='Coldplay', about='Coldplay is a British rock band.')
     maroon5 = Artist(name='Maroon 5', about='Maroon 5 is an American pop rock band.')
-    song1 = Song(name='Yellow', year='2004', lyric='bla bla', artist=)
+    song1 = Song(name='Yellow', year='2004', lyric='bla bla', artist=coldplay)
     db.session.add(coldplay)
     db.session.add(maroon5)
     db.session.add(song1)
