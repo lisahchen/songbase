@@ -65,7 +65,7 @@ def add_artists():
 
 @app.route('/artist/edit/<int:id>', methods=['GET', 'POST'])
 def edit_artists(id):
-    artist = Artist.query. filter_by(id=id).first()
+    artist = Artist.query.filter_by(id=id).first()
     if request.method == 'GET':
         return render_template('artist-edit.html', artist=artist)
     if request.method == 'POST':
@@ -89,7 +89,7 @@ def add_songs():
 
         # insert the data into the database
         artist = Artist.query.filter_by(name=artist_name).first()
-        song = Song(name=name, year=year, lyrics=lyrics)
+        song = Song(name=name, year=year, lyrics=lyrics, artist=artist)
         db.session.add(song)
         db.session.commit()
         return redirect(url_for('show_all_songs'))
