@@ -16,7 +16,7 @@ class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
     about = db.Column(db.Text)
-    songs = db.relationship('Song', backref='artist',cascade='delete')
+    songs = db.relationship('Song', backref='artist', cascade='delete')
 
 
 class Song(db.Model):
@@ -55,7 +55,6 @@ def add_artists():
         # get data from the form
         name = request.form['name']
         about = request.form['about']
-
         # insert the data into the database
         artist = Artist(name=name, about=about)
         db.session.add(artist)
@@ -99,7 +98,6 @@ def add_songs():
         year = request.form['year']
         lyrics = request.form['lyrics']
         artist_name = request.form['artist_name']
-
         # insert the data into the database
         artist = Artist.query.filter_by(name=artist_name).first()
         song = Song(name=name, year=year, lyrics=lyrics, artist=artist)
@@ -113,10 +111,9 @@ def form_demo():
     if request.method == 'GET':
         first_name = request.args.get('first_name') # this is for GET
         if first_name:
-            return render_template('form-demo.html', first_name = first_name)
+            return render_template('form-demo.html', first_name=first_name)
         else:
-            return render_template('form-demo.html', first_name = session.get('first_name'))
-
+            return render_template('form-demo.html', first_name=session.get('first_name'))
     if request.method == 'POST':
         session['first_name'] = request.form['first_name']
         return redirect(url_for('form_demo'))

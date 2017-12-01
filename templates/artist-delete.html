@@ -4,11 +4,12 @@
 {% block title %}
   All Artists
 {% endblock %}
+
 {% block page_content %}
-    <h1>This page deletes artists</h1>
-    <form action="/artist/delete/{{artist.name}}" method="post">
-      <input type="text" name="name" value="{{artist.name}}" readonly="True"><br><br>
-      <input type="text" name="about" value="{{artist.about}}" readonly="True"><br><br>
-      <input type="submit" name="" value="Delete Artist">
-    </form>
+  <h1>This page deletes artists</h1>
+  <form action="/artist/delete/{{artist.name}}" method="post">
+    <input type="text" name="name" value="{{artist.name}}" readonly="True"><br><br>
+    <input type="text" name="about" value="{{artist.about}}" readonly="True"><br><br>
+    <input type="submit" name="" value="Delete Artist">
+  </form>
 {% endblock %}
